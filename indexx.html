@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffe3e3, #e0f7fa);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+        background: white;
+        max-width: 420px;
+        padding: 30px;
+        border-radius: 22px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        text-align: center;
+        animation: fadeIn 1.2s ease;
+    }
+
+    h1 {
+        color: #ff4d6d;
+        margin-bottom: 12px;
+        font-size: 26px;
+    }
+
+    p {
+        color: #444;
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .heart {
+        font-size: 28px;
+        margin-bottom: 8px;
+        animation: beat 1.2s infinite;
+    }
+
+    .note {
+        margin-top: 18px;
+        font-size: 14px;
+        color: #777;
+        font-style: italic;
+    }
+
+    .buttons {
+        margin-top: 22px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .btn.whatsapp {
+        background: #25D366;
+        color: white;
+    }
+
+    .btn.instagram {
+        background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+        color: white;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
+    }
+
+    .qr-box {
+        margin-top: 22px;
+    }
+
+    .qr-box img {
+        width: 160px;
+        height: 160px;
+    }
+
+    @keyframes beat {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(25px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="heart">🤍</div>
+    <h1>For You</h1>
+
+    <p>
+        It was really nice meeting you today and talking for a bit.  
+        You seemed genuine, and I really liked your nature and the way you speak.
+    </p>
+
+    <p>
+        If you’re comfortable, I’d like us to stay in touch  
+        and talk sometime in the future.  
+        So if you feel it’s okay,  
+        I’d really appreciate getting your contact.
+    </p>
+
+    <p class="note">
+        This is just a simple request,  
+        with absolutely no pressure 🙂
+    </p>
+
+    <!-- CONTACT BUTTONS -->
+    <div class="buttons">
+        <a class="btn whatsapp" href="https://wa.me/9142603321" target="_blank">
+            WhatsApp
+        </a>
+
+        <a class="btn instagram" href="https://instagram.com/chandan_yadav281208" target="_blank">
+            Instagram
+        </a>
+    </div>
+
+    <!-- QR CODE -->
+    <div class="qr-box">
+        <p class="note">Scan to open this page</p>
+        <img id="qrCode" alt="QR Code">
+    </div>
+</div>
+
+<script>
+    // QR code generates for current page URL
+    const pageURL = window.location.href;
+    document.getElementById("qrCode").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
+        encodeURIComponent(pageURL);
+</script>
+
+</body>
+</html>
