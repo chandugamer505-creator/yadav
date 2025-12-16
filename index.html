@@ -1,136 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just For You 💗</title>
 
-<style>
-    body {
-        margin: 0;
-        height: 100vh;
-        background: linear-gradient(135deg, #ffe3e3, #e0f7fa);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Poppins', sans-serif;
-    }
+    <style>
+        :root{
+            --pink1:#ff4fa2;
+            --pink2:#ff85c8;
+            --bg:#fff0f8;
+            --card:#ffffff;
+            --text:#333;
+        }
 
-    .card {
-        background: white;
-        max-width: 420px;
-        padding: 30px;
-        border-radius: 22px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        text-align: center;
-        animation: fadeIn 1.2s ease;
-    }
+        /* RESET */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Poppins",sans-serif;
+        }
 
-    h1 {
-        color: #ff4d6d;
-        margin-bottom: 12px;
-        font-size: 26px;
-    }
+        body{
+            background:linear-gradient(135deg,#ffe6f3,#fff0f8);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden;
+        }
 
-    p {
-        color: #444;
-        font-size: 16px;
-        line-height: 1.8;
-    }
+        /* FLOATING HEARTS */
+        .hearts{
+            position:fixed;
+            inset:0;
+            z-index:-1;
+            overflow:hidden;
+        }
 
-    .heart {
-        font-size: 28px;
-        margin-bottom: 8px;
-        animation: beat 1.2s infinite;
-    }
+        .heart{
+            position:absolute;
+            bottom:-20px;
+            font-size:18px;
+            opacity:0.6;
+            animation:floatUp linear infinite;
+        }
 
-    .note {
-        margin-top: 18px;
-        font-size: 14px;
-        color: #777;
-        font-style: italic;
-    }
+        @keyframes floatUp{
+            from{
+                transform:translateY(0) scale(1);
+                opacity:0.6;
+            }
+            to{
+                transform:translateY(-120vh) scale(1.4);
+                opacity:0;
+            }
+        }
 
-    .buttons {
-        margin-top: 22px;
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+        /* MAIN CARD */
+        .card{
+            width:320px;
+            background:var(--card);
+            border-radius:18px;
+            padding:24px;
+            text-align:center;
+            box-shadow:0 20px 40px rgba(255,79,162,0.25);
+            animation:cardIn 0.6s ease;
+        }
 
-    .btn {
-        padding: 10px 18px;
-        border-radius: 25px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
+        @keyframes cardIn{
+            from{
+                transform:translateY(30px) scale(0.9);
+                opacity:0;
+            }
+            to{
+                transform:translateY(0) scale(1);
+                opacity:1;
+            }
+        }
 
-    .btn.whatsapp {
-        background: #25D366;
-        color: white;
-    }
+        .card h2{
+            color:var(--pink1);
+            margin-bottom:10px;
+        }
 
-    .btn.instagram {
-        background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
-        color: white;
-    }
+        .card p{
+            color:#666;
+            font-size:15px;
+            margin-bottom:20px;
+        }
 
-    .btn:hover {
-        transform: translateY(-3px);
-        opacity: 0.9;
-    }
+        /* BUTTON */
+        .openBtn{
+            background:linear-gradient(135deg,var(--pink1),var(--pink2));
+            border:none;
+            padding:12px 20px;
+            border-radius:12px;
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+        }
 
-    @keyframes beat {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.15); }
-        100% { transform: scale(1); }
-    }
+        .openBtn:hover{
+            transform:scale(1.05);
+            box-shadow:0 10px 25px rgba(255,79,162,0.4);
+        }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(25px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
+        /* LETTER MODAL */
+        .letterBox{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.6);
+            display:none;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .letter{
+            background:white;
+            width:90%;
+            max-width:360px;
+            border-radius:18px;
+            padding:24px;
+            animation:letterOpen 0.4s ease;
+        }
+
+        @keyframes letterOpen{
+            from{
+                transform:scale(0.85) translateY(20px);
+                opacity:0;
+            }
+            to{
+                transform:scale(1) translateY(0);
+                opacity:1;
+            }
+        }
+
+        .letter h3{
+            color:var(--pink1);
+            margin-bottom:12px;
+        }
+
+        .letter p{
+            font-size:15px;
+            color:#444;
+            line-height:1.5;
+        }
+
+        .closeBtn{
+            margin-top:18px;
+            background:#eee;
+            border:none;
+            padding:10px;
+            width:100%;
+            border-radius:10px;
+            cursor:pointer;
+        }
+    </style>
 </head>
+
 <body>
 
+<!-- FLOATING HEARTS -->
+<div class="hearts" id="hearts"></div>
+
+<!-- MAIN CARD -->
 <div class="card">
-    <div class="heart">🤍</div>
-    <h1>For You</h1>
+    <h2>AREEE BSDK UDIT MY DOST💗</h2>
+    <p>TORA KHATIR KUCH SPECIAL.<br> (NECCHE OPEN WALA BUTTON PE DABAU).</p>
+    <button class="openBtn" onclick="openLetter()">Open</button>
+</div>
 
-    <p>
-        It was really nice meeting you today and talking for a bit.  
-        You seemed genuine, and I really liked your nature and the way you speak.
-    </p>
+<!-- LETTER -->
+<div class="letterBox" id="letterBox">
+    <div class="letter">
+        <h3>Bass thoda sa bakchodi ba padh le…</h3>
+        <p>
+            BHAI BAHUTA DIN BHAIL TORA SE BADHIYASE BATT KAILA DOSTT.<br>
+            AUU KABO BAZARE MIL KE UNLIMITED TIME BATT KAIL JAUU.<br><br>
+            TE KAHI GUUSAA TA NAIKHIS NU, ATNA DIN ME KABO YAD NA
+            KAILIS HAMRA KE  AUU MIL YARR BHAII BAHUT DIN BHAIL PADH
+            LEELE NU MAD*** ABB JALDI AJAIHE KAL MILE<br><br>
 
-    <p>
-        If you’re comfortable, I’d like us to stay in touch  
-        and talk sometime in the future.  
-        So if you feel it’s okay,  
-        I’d really appreciate getting your contact.
-    </p>
-
-    <p class="note">
-        This is just a simple request,  
-        with absolutely no pressure 🙂
-    </p>
-
-    <!-- CONTACT BUTTONS -->
-    <div class="buttons">
-        <!-- CHANGE NUMBER & USERNAME -->
-        <a class="btn whatsapp" href="https://wa.me/9142603321" target="_blank">
-            WhatsApp
-        </a>
-
-        <a class="btn instagram" href="https://instagram.com/chandan_yadav281208" target="_blank">
-            Instagram
-        </a>
+            (Note: agar koi batt bura lagal hoi ta sorry bss aise hi
+            mile ke rahe ta likh le bani)
+            And i fuck you beh*** .......(i AM WAITING)💕<br><br>
+            CODED BY :- CHANDAN YADAV
+        </p>
+        <button class="closeBtn" onclick="closeLetter()">Close</button>
     </div>
 </div>
+
+<script>
+    /* HEART ANIMATION */
+    const heartsBox=document.getElementById("hearts");
+    const emojis=["💗","💖","💕","💞"];
+
+    setInterval(()=>{
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(16+Math.random()*14)+"px";
+        h.style.animationDuration=(6+Math.random()*4)+"s";
+        heartsBox.appendChild(h);
+        setTimeout(()=>h.remove(),10000);
+    },700);
+
+    /* LETTER CONTROL */
+    function openLetter(){
+        document.getElementById("letterBox").style.display="flex";
+    }
+
+    function closeLetter(){
+        document.getElementById("letterBox").style.display="none";
+    }
+</script>
 
 </body>
 </html>
