@@ -84,15 +84,6 @@
         opacity: 0.9;
     }
 
-    .qr-box {
-        margin-top: 22px;
-    }
-
-    .qr-box img {
-        width: 160px;
-        height: 160px;
-    }
-
     @keyframes beat {
         0% { transform: scale(1); }
         50% { transform: scale(1.15); }
@@ -130,6 +121,7 @@
 
     <!-- CONTACT BUTTONS -->
     <div class="buttons">
+        <!-- CHANGE NUMBER & USERNAME -->
         <a class="btn whatsapp" href="https://wa.me/9142603321" target="_blank">
             WhatsApp
         </a>
@@ -138,21 +130,7 @@
             Instagram
         </a>
     </div>
-
-    <!-- QR CODE -->
-    <div class="qr-box">
-        <p class="note">Scan to open this page</p>
-        <img id="qrCode" alt="QR Code">
-    </div>
 </div>
-
-<script>
-    // QR code generates for current page URL
-    const pageURL = window.location.href;
-    document.getElementById("qrCode").src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
-        encodeURIComponent(pageURL);
-</script>
 
 </body>
 </html>
